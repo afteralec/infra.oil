@@ -1,6 +1,6 @@
 resource "digitalocean_domain" "default" {
    name = "oilmud.io"
-   ip_address = digitalocean_droplet.server.ip_address
+   ip_address = digitalocean_droplet.server.ipv4_address
 }
 
 resource "digitalocean_record" "CNAME-www" {
