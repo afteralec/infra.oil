@@ -33,6 +33,7 @@ runcmd:
   - systemctl start docker
 
 power_state:
+  delay: "+2"
   timeout: 30
   mode: reboot
   condition: True
