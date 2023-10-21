@@ -3,16 +3,15 @@ set -euo pipefail
 
 export PATH=$PATH/usr/bin
 sudo apt update
-
 sudo apt install -y nginx
-
 cp /root/nginx.conf /etc/nginx/nginx.conf
+sudo systemctl reload nginx
 
-sudo ufw allow ssh
-sudo ufw allow "Nginx HTTPS"
-sufo ufw allow 8020/tcp
-sudo ufw allow 8030/tcp
 sudo ufw --force enable
+sudo ufw allow OpenSSH
+sudo ufw allow "Nginx HTTPS"
+sudo ufw allow 8020/tcp
+sudo ufw allow 8030/tcp
 
 USERNAME=alec
 

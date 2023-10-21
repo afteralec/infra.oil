@@ -1,11 +1,13 @@
 resource "digitalocean_firewall" "server_firewall" {
   name = "ssh-http-https-mud-tcp"
 
-  droplet_ids = [digitalocean_droplet.server.id]
+  # droplet_ids = [digitalocean_droplet.server.id]
+  droplet_ids = []
 
   inbound_rule {
     protocol         = "tcp"
     port_range       = "22"
+    source_addresses = ["0.0.0.0/0", "::/0"]
   }
 
   inbound_rule {
