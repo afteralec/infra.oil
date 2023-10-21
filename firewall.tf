@@ -34,11 +34,13 @@ resource "digitalocean_firewall" "server_firewall" {
   }
 
   outbound_rule {
-    protocol = "tcp"
+    protocol    = "tcp"
+    port_range  = "1-65535"
   }
 
   outbound_rule {
-    protocol = "udp"
+    protocol    = "udp"
+    port_range  = "1-65535"
   }
 
   outbound_rule {
