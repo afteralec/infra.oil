@@ -3,11 +3,12 @@ resource "digitalocean_droplet" "server" {
   name        = "server"
   region      = "nyc3"
   size        = "s-1vcpu-1gb"
+  ipv6        = true
   monitoring  = true
   ssh_keys    = [
     data.digitalocean_ssh_key.terraform.id
   ]
-  user_data   = file("user-data.sh")
+  user_data   = file("server.yaml")
 
   connection {
     host        = self.ipv4_address
