@@ -1,6 +1,19 @@
 #!/bin/bash
 set -euo pipefail
 
+export PATH=$PATH/usr/bin
+sudo apt update
+
+sudo apt install -y nginx
+
+cp /root/nginx.conf /etc/nginx/nginx.conf
+
+sudo ufw allow ssh
+sudo ufw allow "Nginx HTTPS"
+sufo ufw allow 8020/tcp
+sudo ufw allow 8030/tcp
+sudo ufw --force enable
+
 USERNAME=alec
 
 # Create user and immediately expire password to force a change on login
@@ -19,13 +32,3 @@ chown --recursive "${USERNAME}":"${USERNAME}" "${home_directory}/.ssh"
 # Disable root SSH login with password
 sed --in-place 's/^PermitRootLogin.*/PermitRootLogin prohibit-password/g' /etc/ssh/sshd_config
 if sshd -t -q; then systemctl restart sshd; fi
-
-export PATH=$PATH/usr/bin
-sudo apt update
-sudo apt install -y nginx
-
-sudo ufw --force enable
-sudo ufw allow ssh
-sudo ufw allow "Nginx HTTPS"
-sudo ufw allow 8020/tcp
-sudo ufw allow 8030/tcp
