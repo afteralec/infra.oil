@@ -15,4 +15,3 @@ override.tf.json
 *_override.tf.json
 
 *tfplan*
-infra.out
