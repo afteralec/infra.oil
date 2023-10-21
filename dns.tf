@@ -3,7 +3,7 @@ resource "digitalocean_domain" "default" {
    ip_address = digitalocean_droplet.server.ipv4_address
 }
 
-resource "digitalocean_record" "CNAME-www" {
+resource "digitalocean_record" "cname" {
   domain = digitalocean_domain.default.name
   type = "CNAME"
   name = "www"
