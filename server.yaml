@@ -78,7 +78,8 @@ runcmd:
   - systemctl restart nginx
   - sudo snap install --classic certbot
   - sudo ln -s /snap/bin/certbot /usr/bin/certbot
-  - sudo certbot --nginx -n -d oilmud.io -d www.oilmud.io -d play.oilmud.io --email after.alec@gmail.com --agree-tos --redirect --hsts
+  - sudo certbot --nginx -n -d oilmud.io -d www.oilmud.io --email after.alec@gmail.com --agree-tos --redirect --hsts
+  - sudo certbot certonly --nginx -n -d play.oilmud.io --email after.alec@gmail.com --agree-tos
 
 power_state:
   delay: "+2"
