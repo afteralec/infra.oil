@@ -61,7 +61,7 @@ write_files:
 runcmd:
   - sudo ufw --force enable
   - sudo ufw allow OpenSSH
-  - sudo ufw allow "Nginx HTTPS"
+  - sudo ufw allow "Nginx Full"
   - sudo ufw allow 8020/tcp
   - sudo ufw allow 8030/tcp
   - mkdir -p /etc/apt/keyrings
