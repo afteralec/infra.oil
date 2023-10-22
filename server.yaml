@@ -37,7 +37,7 @@ write_files:
     content: |
       server {
         listen 80;
-        server_name oilmud.io;
+        server_name oilmud.io www.oilmud.io;
 
         location / {
           proxy_pass http://127.0.0.1:8008;
@@ -76,6 +76,9 @@ runcmd:
   - ln -s /etc/nginx/sites-available/oilmud.io /etc/nginx/sites-enabled/
   - ln -s /etc/nginx/streams-available/play.oilmud.io /etc/nginx/streams-enabled/
   - systemctl restart nginx
+  - sudo snap install --classic certbot
+  - sudo ln -s /snap/bin/certbot /usr/bin/certbot
+  - certbot --nginx -n -d oilmud.io -d www.oilmud.io -d play.oilmud.io --email after.alec@gmail.com --agree-tos --redirect --hsts
 
 power_state:
   delay: "+2"
