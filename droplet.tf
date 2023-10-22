@@ -9,17 +9,4 @@ resource "digitalocean_droplet" "server" {
     data.digitalocean_ssh_key.terraform.id
   ]
   user_data   = file("server.yaml")
-
-  connection {
-    host        = self.ipv4_address
-    user        = "root"
-    type        = "ssh"
-    private_key = file(var.pvt_key)
-    timeout     = "2m"
-  }
-
-  provisioner "file" {
-    source      = "conf/nginx/nginx.conf"
-    destination = "/root/nginx.conf"
-  }
 }
