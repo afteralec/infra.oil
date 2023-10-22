@@ -35,6 +35,15 @@ write_files:
           proxy_cache_bypass $http_upgrade;
         }
       }
+  - path: /etc/nginx/sites-available/play.oilmud.io
+    content: |
+      stream {
+        server {
+          listen 8020;
+          server_name play.oilmud.io;
+          proxy_pass 127.0.0.1:8080; 
+        }
+      }
 
 runcmd:
   - sudo ufw --force enable
@@ -49,6 +58,10 @@ runcmd:
   - apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
   - systemctl enable docker
   - systemctl start docker
+  - ln -s /etc/nginx/sites-available/oilmud.io /etc/nginx/sites-enabled/
+  - ln -s /etc/nginx/sites-available/play.oilmud.io /etc/nginx/sites-enabled/
+  - rm /etc/nginx/sites-enabled/default 
+  - systemctl restart nginx
 
 power_state:
   delay: "+2"
