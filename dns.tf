@@ -1,5 +1,5 @@
 resource "digitalocean_domain" "default" {
-   name = "oilmud.io"
+   name = "petrichormud.io"
    ip_address = digitalocean_droplet.server.ipv4_address
 }
 

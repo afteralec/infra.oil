@@ -18,9 +18,9 @@ data "digitalocean_ssh_key" "terraform" {
   name = "terraform"
 }
 
-resource "digitalocean_project" "oil" {
-  name        = "Oil"
-  description = "Oil MUD"
+resource "digitalocean_project" "petrichor" {
+  name        = "Petrichor"
+  description = "Petrichor MUD"
   purpose     = "Web Application"
   environment = "Production"
   resources   = [
@@ -29,7 +29,7 @@ resource "digitalocean_project" "oil" {
   ] 
 }
 
-resource "digitalocean_container_registry" "oil" {
-  name                    = "oil"
+resource "digitalocean_container_registry" "petrichor" {
+  name                    = "petrichor"
   subscription_tier_slug  = "starter"
 }

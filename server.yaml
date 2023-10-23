@@ -33,11 +33,11 @@ write_files:
       }
     defer: true
     append: true
-  - path: /etc/nginx/sites-available/oilmud.io
+  - path: /etc/nginx/sites-available/petrichormud.com
     content: |
       server {
         listen 80;
-        server_name oilmud.io www.oilmud.io;
+        server_name petrichormud.com www.petrichormud.com;
 
         location / {
           proxy_pass http://127.0.0.1:8008;
@@ -50,11 +50,11 @@ write_files:
         }
       }
     defer: true
-  - path: /etc/nginx/sites-available/play.oilmud.io
+  - path: /etc/nginx/sites-available/play.petrichormud.com
     content: |
       server {
         listen 80;
-        server_name play.oilmud.io;
+        server_name play.petrichormud.com;
         
         location / {
           proxy_pass http://127.0.0.1:8089;
@@ -67,7 +67,7 @@ write_files:
         }
       }
     defer: true
-  - path: /etc/nginx/streams-available/oilmud.io
+  - path: /etc/nginx/streams-available/petrichormud.com
     content: |
       #server {
       #  listen 8020 ssl;
@@ -76,8 +76,8 @@ write_files:
       #  ssl_protocols  TLSv1 TLSv1.1 TLSv1.2;
       #  ssl_ciphers    HIGH:!aNULL:!MD5;
       #
-      #  ssl_certificate /etc/letsencrypt/live/oilmud.io/fullchain.pem;
-      #  ssl_certificate_key /etc/letsencrypt/live/oilmud.io/privkey.pem;
+      #  ssl_certificate /etc/letsencrypt/live/petrichormud.com/fullchain.pem;
+      #  ssl_certificate_key /etc/letsencrypt/live/petrichormud.com/privkey.pem;
       #
       #  ssl_handshake_timeout 10s;
       #  ssl_session_cache shared:SSL:1m;
@@ -104,14 +104,14 @@ runcmd:
   - systemctl start docker
   - rm /etc/nginx/sites-enabled/default
   - mkdir /etc/nginx/streams-enabled
-  - ln -s /etc/nginx/sites-available/oilmud.io /etc/nginx/sites-enabled/
-  - ln -s /etc/nginx/sites-available/play.oilmud.io /etc/nginx/sites-enabled/
-  - ln -s /etc/nginx/streams-available/oilmud.io /etc/nginx/streams-enabled/
+  - ln -s /etc/nginx/sites-available/petrichormud.com /etc/nginx/sites-enabled/
+  - ln -s /etc/nginx/sites-available/play.petrichormud.com /etc/nginx/sites-enabled/
+  - ln -s /etc/nginx/streams-available/petrichormud.com /etc/nginx/streams-enabled/
   - systemctl restart nginx
   - sudo snap install --classic certbot
   - sudo ln -s /snap/bin/certbot /usr/bin/certbot
-  - sudo certbot --nginx -n -d oilmud.io -d www.oilmud.io -d play.oilmud.io --email after.alec@gmail.com --agree-tos --redirect --hsts
-  - sed -i 's/^#//' /etc/nginx/streams-available/oilmud.io
+  - sudo certbot --nginx -n -d petrichormud.com -d www.petrichormud.com -d play.petrichormud.com --email after.alec@gmail.com --agree-tos --redirect --hsts
+  - sed -i 's/^#//' /etc/nginx/streams-available/petrichormud.com
   - systemctl restart nginx
 
 power_state:
