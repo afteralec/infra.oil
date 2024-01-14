@@ -7,7 +7,7 @@ groups:
 
 system_info:
   default_user:
-    groups: [ docker ]
+    groups: [docker]
 
 packages:
   - apt-transport-https
